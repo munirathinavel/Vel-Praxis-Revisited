@@ -1,1 +1,1 @@
-This repository would contain practices on Algorithms, Data Structures, Design Patterns, Java/J2EE Stuffs.
+This project is used for practicing Data Structures & Algorithm problems.
