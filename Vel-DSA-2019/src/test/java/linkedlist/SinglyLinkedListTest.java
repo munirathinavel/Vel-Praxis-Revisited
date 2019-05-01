@@ -47,7 +47,7 @@ class SinglyLinkedListTest {
 		System.out.println(list);
 		assertEquals(1, list.size());
 
-		assertEquals(2, list.removeLast());
+		assertEquals(3, list.removeLast());
 		System.out.println(list);
 
 		assertEquals(1, list.removeFirst());
@@ -213,8 +213,63 @@ class SinglyLinkedListTest {
 		assertTrue(list.add(15));
 		assertTrue(list.add(26));
 
-		assertTrue(list.addToSortedList(12));
+		System.out.println(list);
 
+		assertTrue(list.addToSortedList(12));
 		assertEquals(7, list.length);
+		System.out.println(list);
+
+		assertTrue(list.addToSortedList(8));
+		assertEquals(8, list.length);
+		System.out.println(list);
+
+		assertTrue(list.addToSortedList(672));
+		assertEquals(9, list.length);
+		System.out.println(list);
 	}
+
+	@Test
+	public void testReverseList() {
+		SinglyLinkedList<Integer> list = new SinglyLinkedList<Integer>();
+		assertTrue(list.add(1));
+		assertTrue(list.add(2));
+		assertTrue(list.add(3));
+		assertTrue(list.add(4));
+		assertTrue(list.add(15));
+		assertTrue(list.add(26));
+
+		System.out.println(list);
+
+		assertTrue(list.reverseList());
+		System.out.println(list);
+	}
+
+	@Test
+	public void testReverseLinkedList() {
+
+		SinglyLinkedList<Integer> list = new SinglyLinkedList<Integer>();
+		assertThrows(RuntimeException.class, () -> {
+			list.reverseLinkedList();
+		});
+		assertTrue(list.add(1));
+		assertTrue(list.reverseLinkedList());
+		System.out.println(list);
+		assertTrue(list.add(2));
+		assertTrue(list.add(3));
+
+		assertTrue(list.reverseLinkedList());
+		System.out.println(list);
+		assertTrue(list.reverseLinkedList());
+		System.out.println(list);
+
+		assertTrue(list.add(4));
+		assertTrue(list.add(15));
+		assertTrue(list.add(26));
+
+		System.out.println(list);
+
+		assertTrue(list.reverseLinkedList());
+		System.out.println(list);
+	}
+
 }

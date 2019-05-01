@@ -415,12 +415,12 @@ public class SinglyLinkedList<E> {
 
 	public boolean addToSortedList(E data) {
 		Node<E> newNode = new Node<E>(data, null);
-		if ((int) head.data < (int) data) {
+		if ((int) head.data > (int) data) {
 			newNode.next = head;
 			head = newNode;
 		} else {
 			Node<E> temp = head;
-			while (temp.next != null && (int) temp.data > (int) data) {
+			while (temp.next != null && (int) temp.next.data < (int) data) {
 				temp = temp.next;
 			}
 			if (temp.next == null) {
@@ -434,5 +434,47 @@ public class SinglyLinkedList<E> {
 		return true;
 
 	}
+
+	public boolean reverseList() {
+		if (head == null) {
+			throw new RuntimeException("List is Empty!");
+		} else if (head.next == null) {
+			return true;
+		} else {
+			Node<E> current = head;
+			Node<E> prev = null;
+			while (current != null) {
+				// Save next node temporarily.
+				Node<E> next = current.next;
+				// Set current.next to previous to disconnect the list into reverse
+				current.next = prev;
+				// Update previous to current to move previous to first element in the list
+				prev = current;
+				// Move current to next. Current moves until the last element's next (null)
+				current = next;
+			}
+			// Previous will always have updated list
+			head = prev;
+		}
+		return true;
+	}
+
+	public boolean reverseLinkedList() {
+		if (head == null) {
+			throw new RuntimeException("List is Empty!");
+		}
+		Node<E> current = head;
+		Node<E> prev = null;
+		while (current != null) {
+			Node<E> next = current.next;
+			current.next = prev;
+			prev = current;
+			current = next;
+		}
+		head = prev;
+		return true;
+	}
+	
+	
 
 }
