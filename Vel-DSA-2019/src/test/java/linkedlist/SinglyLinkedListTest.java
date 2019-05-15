@@ -1,10 +1,11 @@
 package linkedlist;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-
-import linkedlist.SinglyLinkedList.Node;
 
 class SinglyLinkedListTest {
 
@@ -270,6 +271,103 @@ class SinglyLinkedListTest {
 
 		assertTrue(list.reverseLinkedList());
 		System.out.println(list);
+	}
+
+	@Test
+	public void testReverseLinkedListInterative() {
+
+		SinglyLinkedList<Integer> list = new SinglyLinkedList<Integer>();
+		assertThrows(RuntimeException.class, () -> {
+			list.reverseLinkedListInterative();
+		});
+		assertTrue(list.add(1));
+		assertTrue(list.reverseLinkedListInterative());
+		System.out.println(list);
+		assertTrue(list.add(2));
+		assertTrue(list.add(3));
+
+		assertTrue(list.reverseLinkedListInterative());
+		System.out.println(list);
+		assertTrue(list.reverseLinkedListInterative());
+		System.out.println(list);
+
+		assertTrue(list.add(4));
+		assertTrue(list.add(15));
+		assertTrue(list.add(26));
+
+		System.out.println(list);
+
+		assertTrue(list.reverseLinkedListInterative());
+		System.out.println(list);
+	}
+
+	@Test
+	public void testReverseLinkedListRecursively() {
+
+		SinglyLinkedList<Integer> list = new SinglyLinkedList<Integer>();
+		/*
+		 * assertThrows(RuntimeException.class, () -> {
+		 * list.reverseLinkedListRecursively(); });
+		 */
+		assertTrue(list.add(1));
+		assertTrue(list.reverseLinkedListRecursively());
+		System.out.println(list);
+		assertTrue(list.add(2));
+		assertTrue(list.add(3));
+
+		assertTrue(list.reverseLinkedListRecursively());
+		System.out.println(list);
+		assertTrue(list.reverseLinkedListRecursively());
+		System.out.println(list);
+
+		assertTrue(list.add(4));
+		assertTrue(list.add(15));
+		assertTrue(list.add(26));
+
+		System.out.println(list);
+
+		assertTrue(list.reverseLinkedListRecursively());
+		System.out.println(list);
+	}
+
+	@Test
+	public void testReverseLinkedListRecursively2() {
+
+		SinglyLinkedList<Integer> list = new SinglyLinkedList<Integer>();
+		assertTrue(list.add(1));
+		assertTrue(list.reverseLinkedListRecursively2());
+		System.out.println(list);
+		assertTrue(list.add(2));
+		assertTrue(list.add(3));
+
+		assertTrue(list.reverseLinkedListRecursively2());
+		System.out.println(list);
+		assertTrue(list.reverseLinkedListRecursively2());
+		System.out.println(list);
+
+		assertTrue(list.add(4));
+		assertTrue(list.add(15));
+		assertTrue(list.add(26));
+
+		System.out.println(list);
+
+		assertTrue(list.reverseLinkedListRecursively2());
+		System.out.println(list);
+	}
+
+	@Test
+	public void testPrintLinkedListInReverseOrder() {
+
+		SinglyLinkedList<Integer> list = new SinglyLinkedList<Integer>();
+		assertTrue(list.add(1));
+		assertTrue(list.add(2));
+		assertTrue(list.add(3));
+		assertTrue(list.add(4));
+		assertTrue(list.add(15));
+		assertTrue(list.add(26));
+
+		System.out.println(list);
+		assertTrue(list.printLinkedListInReverseOrder());
 	}
 
 }

@@ -1,7 +1,5 @@
 package linkedlist;
 
-import java.util.function.BooleanSupplier;
-
 /**
  * <P>
  * Single Linked List Implementation with varieties add, remove methods.
@@ -11,7 +9,11 @@ import java.util.function.BooleanSupplier;
  *
  * @param <E>
  */
+
 public class SinglyLinkedList<E> {
+
+	public static final String ODD = "Odd";
+	public static final String EVEN = "Even";
 	Node<E> head;
 	int length = 0;
 	private int counter = 0;
@@ -226,29 +228,6 @@ public class SinglyLinkedList<E> {
 		return sb.append("]").toString();
 	}
 
-	/**
-	 * This class is used for singly linked list node definition
-	 * 
-	 * @author m.chinnasamy
-	 *
-	 * @param <E>
-	 */
-	class Node<E> {
-		E data;
-		Node<E> next;
-
-		public Node(E data, Node<E> next) {
-			this.data = data;
-			this.next = next;
-		}
-
-		@Override
-		public String toString() {
-			return "" + this.data;
-		}
-
-	}
-
 	public E findNthLastNode(int position) {
 		if (length < position || position < 1) {
 			throw new RuntimeException("Index is Out of range!");
@@ -459,6 +438,25 @@ public class SinglyLinkedList<E> {
 		return true;
 	}
 
+	public boolean reverseLinkedListInterative() {
+		if (head == null) {
+			throw new RuntimeException("List is empty!");
+		}
+
+		Node<E> current = head;
+		Node<E> next = null;
+		Node<E> prev = null;
+
+		while (current != null) {
+			next = current.next;
+			current.next = prev;
+			prev = current;
+			current = next;
+		}
+		head = prev;
+		return true;
+	}
+
 	public boolean reverseLinkedList() {
 		if (head == null) {
 			throw new RuntimeException("List is Empty!");
@@ -474,7 +472,157 @@ public class SinglyLinkedList<E> {
 		head = prev;
 		return true;
 	}
-	
-	
+
+	public boolean reverseLinkedListRecursively() {
+		head = reverseListRecursively(head);
+		return true;
+	}
+
+	private Node<E> reverseListRecursively(Node<E> head) {
+		if (head == null) {
+			throw new RuntimeException("List is empty!");
+		}
+		if (head.next == null) {
+			return head;
+		}
+		Node<E> newHead = reverseListRecursively(head.next);
+
+		head.next.next = head;
+		head.next = null;
+		return newHead;
+
+	}
+
+	public boolean printLinkedListInReverseOrder() {
+		printLinkedListInReverseOrder(head);
+		return true;
+	}
+
+	private E printLinkedListInReverseOrder(Node<E> head) {
+		if (head == null) {
+			return null;
+		}
+		printLinkedListInReverseOrder(head.next);
+		System.out.print(" " + head.data);
+		return null;
+	}
+
+	public boolean reverseLinkedListRecursively2() {
+		head = reverseLinkedListRecursively2(head);
+		return true;
+	}
+
+	private Node<E> reverseLinkedListRecursively2(Node<E> head) {
+		// Check if First node is null
+		if (head == null) {
+			return null;
+		}
+		// last node
+		if (head.next == null) {
+			return head;
+		}
+
+		Node<E> newHead = reverseLinkedListRecursively2(head.next);
+		head.next.next = head;
+		head.next = null;
+		return newHead;
+	}
+
+	public E findMiddleElement() {
+		Node<E> slow = head;
+		Node<E> fast = head;
+		if (head == null) {
+			throw new RuntimeException("List is Empty!");
+		}
+
+		while (fast != null && fast.next != null) {
+			fast = fast.next.next;
+			slow = slow.next;
+		}
+		return slow.data;
+
+	}
+
+	public String findOddOrEven() {
+		Node<E> temp = head;
+		while (temp != null && temp.next != null) {
+			temp = temp.next.next;
+		}
+		if (temp == null) {
+			return EVEN;
+		}
+		return ODD;
+	}
+
+	public SinglyLinkedList<E> mergeLinkedList(SinglyLinkedList<E> list1, SinglyLinkedList<E> list2) {
+		Node<E> head1 = list1.head;
+		Node<E> head2 = list2.head;
+
+		SinglyLinkedList<E> list3 = new SinglyLinkedList<>();
+		Node<E> head = new Node(null);
+		list3.head = head;
+		while (head1 != null && head2 != null) {
+			if ((int) head1.data > (int) head2.data) {
+				head.next = head2;
+				head2 = head2.next;
+			} else {
+				head.next = head1;
+				head1 = head1.next;
+			}
+			head = head.next;
+		}
+		if (head1 != null) {
+			head.next = head1;
+		} else if (head2 != null) {
+			head.next = head2;
+		}
+		list3.head = list3.head.next;
+		return list3;
+	}
+
+	public Node<E> mergeLinkedListRecursively(Node<E> head1, Node<E> head2) {
+		if (head1 == null) {
+			return head2;
+		}
+		if (head2 == null) {
+			return head1;
+		}
+		Node<E> head = new Node(0);
+		if ((int) head1.data <= (int) head2.data) {
+			head = head1;
+			head.next = mergeLinkedListRecursively(head1.next, head2);
+		} else {
+			head = head2;
+			head.next = mergeLinkedListRecursively(head1, head2.next);
+		}
+		return head;
+	}
+
+}
+
+/**
+ * This class is used for singly linked list node definition
+ * 
+ * @author m.chinnasamy
+ *
+ * @param <E>
+ */
+class Node<E> {
+	E data;
+	Node<E> next;
+
+	public Node(E data, Node<E> next) {
+		this.data = data;
+		this.next = next;
+	}
+
+	public Node(E data) {
+		this.data = data;
+	}
+
+	@Override
+	public String toString() {
+		return "" + this.data;
+	}
 
 }
