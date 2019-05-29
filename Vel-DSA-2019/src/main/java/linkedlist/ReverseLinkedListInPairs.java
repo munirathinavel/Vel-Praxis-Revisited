@@ -3,7 +3,7 @@ package linkedlist;
 import java.util.Stack;
 
 public class ReverseLinkedListInPairs {
-	Node left;
+	Node<Integer> left;
 
 	public void reverseListInPairsBySwapDataIteratively(Node<Integer> head) {
 		if (head == null) {
@@ -303,6 +303,44 @@ public class ReverseLinkedListInPairs {
 		boolean isP1 = left.data == right.data;
 		left = left.next;
 		return isP1;
+	}
+
+	public boolean isPalindromeLeetCode(Node<Integer> head) {
+		if (head == null || head.next == null) {
+			return true;
+		}
+		Node<Integer> slow = head;
+		Node<Integer> fast = head;
+		while (fast != null && fast.next != null) {
+			fast = fast.next.next;
+			slow = slow.next;
+		}
+		slow = reverseList(slow);
+		fast = head;
+		Node<Integer> save = slow;
+		boolean result = true;
+		while (slow != null) {
+			if (slow.data != fast.data) {
+				result = false;
+				break;
+			}
+			slow = slow.next;
+			fast = fast.next;
+		}
+		reverseList(save);
+		return result;
+	}
+
+	public Node<Integer> reverseList(Node<Integer> head) {
+		Node<Integer> prev = null;
+		Node<Integer> next;
+		while (head != null) {
+			next = head.next;
+			head.next = prev;
+			prev = head;
+			head = next;
+		}
+		return prev;
 	}
 
 }

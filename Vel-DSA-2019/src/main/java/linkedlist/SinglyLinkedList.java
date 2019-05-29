@@ -540,8 +540,8 @@ public class SinglyLinkedList<E> {
 			slow = slow.next;
 		}
 		return slow.data;
-
 	}
+	
 
 	public String findOddOrEven() {
 		Node<E> temp = head;

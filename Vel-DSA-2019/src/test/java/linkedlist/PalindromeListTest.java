@@ -40,6 +40,22 @@ public class PalindromeListTest {
 	}
 
 	@Test
+	public void testPalindromeList_ValidInput_LeetCode() {
+
+		SinglyLinkedList<Integer> list = new SinglyLinkedList<Integer>();
+		list.add(1);
+		list.add(2);
+		list.add(3);
+		list.add(4);
+		list.add(3);
+		list.add(2);
+		list.add(1);
+
+		ReverseLinkedListInPairs reverseList = new ReverseLinkedListInPairs();
+		assertTrue(reverseList.isPalindromeLeetCode(list.head));
+	}
+
+	@Test
 	public void testPalindromeList2_ValidInput() {
 
 		SinglyLinkedList<Integer> list = new SinglyLinkedList<Integer>();
@@ -48,6 +64,19 @@ public class PalindromeListTest {
 		list.add(3);
 		list.add(4);
 		list.add(3);
+		list.add(2);
+		list.add(1);
+
+		ReverseLinkedListInPairs reverseList = new ReverseLinkedListInPairs();
+		assertTrue(reverseList.palindromeList2(list.head));
+	}
+
+	@Test
+	public void testPalindromeList2_ValidInput_2() {
+
+		SinglyLinkedList<Integer> list = new SinglyLinkedList<Integer>();
+		list.add(1);
+		list.add(2);
 		list.add(2);
 		list.add(1);
 
