@@ -7,11 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.Test;
 
-public class LinkedListStackTest {
+public class QueueStackTest {
 
 	@Test
-	public void testFixedArrayStack() {
-		LinkedListStack<Integer> stack = new LinkedListStack<>();
+	public void testQueueStack() {
+		QueueStack stack = new QueueStack();
 		assertThrows(RuntimeException.class, () -> {
 			stack.peek();
 		});
@@ -29,5 +29,4 @@ public class LinkedListStackTest {
 		assertTrue(stack.push(5));
 		assertTrue(stack.push(10));
 	}
-
 }

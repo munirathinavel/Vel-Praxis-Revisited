@@ -1,10 +1,10 @@
 package stack;
 
-public class StackNode {
-	int val;
-	StackNode next;
+public class StackNode<E> {
+	public E val;
+	public StackNode<E> next;
 
-	public StackNode(int val) {
+	public StackNode(E val) {
 		this.val = val;
 	}
 

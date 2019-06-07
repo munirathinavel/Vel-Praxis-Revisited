@@ -7,11 +7,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.Test;
 
-public class LinkedListStackTest {
+public class MinStackTest {
 
 	@Test
-	public void testFixedArrayStack() {
-		LinkedListStack<Integer> stack = new LinkedListStack<>();
+	public void testMinStackTest() {
+		MinStack stack = new MinStack();
+
 		assertThrows(RuntimeException.class, () -> {
 			stack.peek();
 		});
@@ -21,13 +22,20 @@ public class LinkedListStackTest {
 		assertTrue(stack.push(1));
 		assertEquals(1, stack.pop());
 		assertTrue(stack.isEmpty());
-		assertTrue(stack.push(2));
-		assertTrue(stack.push(3));
-		assertEquals(3, stack.peek());
-		assertFalse(stack.isEmpty());
-		assertTrue(stack.push(4));
+		assertTrue(stack.push(12));
 		assertTrue(stack.push(5));
-		assertTrue(stack.push(10));
-	}
+		assertEquals(5, stack.peek());
+		assertFalse(stack.isEmpty());
+		assertTrue(stack.push(14));
+		assertTrue(stack.push(25));
 
+		assertTrue(stack.push(10));
+
+		assertEquals(5, stack.getMin());
+
+		assertEquals(10, stack.pop());
+
+		assertEquals(5, stack.getMin());
+
+	}
 }
